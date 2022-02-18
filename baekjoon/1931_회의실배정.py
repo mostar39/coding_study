@@ -30,17 +30,18 @@ for i in range(n) :
 		count = count + 1
 	else :
 		its_ok = 0
+		ok_list = []
+
 		for i in range(end_time_index-start_time_index+1) :
 			if time_list[start_time_index+i] == 0 :
 				its_ok = its_ok+1
-			else:
-				continue
-		if its_ok == end_time_index-start_time_index+1 :
-			for i in range(end_time_index-start_time_index+1) :
-				time_list[start_time_index+i] = 1
-			count = count + 1
+				ok_list.append(1)
+				if its_ok == end_time_index-start_time_index+1 :
+					time_list[start_time_index:end_time_index - start_time_index] = ok_list
+					count = count + 1
+			elif time_list[start_time_index+i] == 1 :
+				break
 	duration_list[dur_min_index] = 99999999
 
 
 print(count)
-
