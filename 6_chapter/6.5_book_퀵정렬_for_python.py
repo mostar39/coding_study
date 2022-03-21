@@ -1,18 +1,18 @@
 array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
 
-def quick_sort(array) :
-	if len(array) <= 1 :
-		return array
-	pivot = array[0]
-	tail = array[1:]
 
-	left_side = [x for x in tail if x <= pivot]
-	right_side = [x for x in tail if x > pivot]
-	print('=========left_side===========')
-	print(left_side)
-	print('=========right_side===========')
-	print(right_side)
+def quick_sort_ming(array_list) :
+	if len(array_list) <= 1 :
+		return array_list
+	else :
+		pivot = array_list[0]
+		tail = array_list[1:]
 
-	return quick_sort(left_side) + [pivot] + quick_sort(right_side)
+		left = [i for i in tail if i<=pivot]
+		right = [x for x in tail if x > pivot]
 
-print(quick_sort(array))
+		return quick_sort_ming(left) + [pivot] + quick_sort_ming(right)
+
+
+
+print(quick_sort_ming(array))
