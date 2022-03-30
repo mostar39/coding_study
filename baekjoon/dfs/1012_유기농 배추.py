@@ -1,37 +1,27 @@
-case = int(input())
-count_list = []
-path = []
+import sys
+sys.setrecursionlimit(10**6)
+test_case = int(sys.stdin.readline())
 
-def dfs(x, y) :
-	if x<0 or y<0 or x>=row or y>=col :
+def dfs(x,y) :
+	if x<=-1 or y<=-1 or x>row or y>col :
 		return False
-	elif ([x,y] in path) and (visited[path.index([x,y])]==0) :
-		visited[path.index([x,y])] = 1
+	if [x,y] in array :
+		array.remove([x,y])
 		dfs(x-1,y)
 		dfs(x+1,y)
 		dfs(x,y+1)
 		dfs(x,y-1)
 		return True
-	elif  ([x,y] not in path) :
-		return False
+	return False
 
-for i in range(case) :
-	path = []
-	row, col, num = map(int, input().split())
-	path = [list(map(int, input().split())) for _ in range(num)]
+for i in range(test_case) :
+	row, col, k = map(int, sys.stdin.readline().split())
+	array = [list(map(int,sys.stdin.readline().split())) for i in range(k)]
+	jirung = 0
 
-	visited = [0]*num
-	count = 0
+	for r in range(row) :
+		for c in range(col) :
+			if dfs(r,c) == True :
+				jirung += 1
 
-	for j in range(len(path)) :
-		if dfs(path[j][0], path[j][1])  :
-			count+=1
-
-	count_list.append(count)
-
-for i in range(case) :
-	print(count_list[i])
-
-
-
-
+	print(jirung)
