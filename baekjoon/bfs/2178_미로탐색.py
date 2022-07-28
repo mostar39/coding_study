@@ -21,5 +21,6 @@ while queue :
 			if array[nx][ny] == 1 :
 				array[nx][ny] = array[x][y] + 1
 				queue.append([nx,ny])
+	print(array)
 
 print(array[n-1][m-1])
