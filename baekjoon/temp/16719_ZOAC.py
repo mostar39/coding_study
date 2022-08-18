@@ -1,18 +1,18 @@
-def solution(s,start) :
-	global answer
-
-	if not s :
+def dfs(start, what) :
+	if not what :
 		return
 
-	target = min(s)
-	idx = s.index(target)
+	min_new_str = what.index(min(what))
+	answer[start + min_new_str] = str_[start+min_new_str]
 
-	answer[start + idx] = target
-	print("".join(answer))
+	print(''.join(answer))
 
-	solution(s[idx+1:], start+idx+1)
-	solution(s[:idx], start)
+	dfs(start+min_new_str+1, what[min_new_str+1:])
+	dfs(start, what[:min_new_str])
 
-word = list(map(str,input().strip()))
-answer = ['']*len(word)
-solution(word,0)
+
+
+str_ = input().strip()
+answer = [''] * len(str_)
+
+dfs(0,str_)
